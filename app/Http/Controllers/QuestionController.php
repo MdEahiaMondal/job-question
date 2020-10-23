@@ -2,84 +2,126 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\QuestionRequest;
 use App\Question;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $questions = Question::with('createdUser', 'updatedUser')->paginate(10);
+        return view('backend.pages.questions.index', compact('questions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('backend.pages.questions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(QuestionRequest $request)
+    {
+        $request['lesson_id'] = $request->lesson;
+
+        $onlyGo = $request->only(['lesson_id', 'title', 'question_details']);
+
+        $question = Question::create($onlyGo);
+
+        if ($question) {
+            if ($request->file('audio_file')) {
+                $file = $request->file('audio_file');
+                $extension = $file->getClientOriginalExtension();
+
+                $name = Carbon::now()->format('Ymd') . '_' . uniqid() . '.' . $extension;
+
+                $file->move(public_path('backend/uploads/files'), $name);
+
+                $question->audio = $name;
+
+                $question->save();
+            }
+            Toastr::success('Question created success', 'Success');
+            return redirect()->back();
+        }
+    }
+
+
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Question $question)
     {
-        //
+        return view('backend.pages.questions.edit', compact('question'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
+
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        if ($request->file('audio_file')) {
+            $file = $request->file('audio_file');
+            $extension = $file->getClientOriginalExtension();
+
+            $name = Carbon::now()->format('Ymd') . '_' . uniqid() . '.' . $extension;
+
+            $file->move(public_path('backend/uploads/files'), $name);
+
+            $request['audio'] = $name;
+
+            if (file_exists('backend/uploads/files/'.$question->audio)){
+                unlink('backend/uploads/files/'.$question->audio);
+            }
+        }else{
+            $request['audio'] = $question->audio;
+        }
+
+        $request['lesson_id'] = $request->lesson;
+
+        $onlyGo = $request->only(['lesson_id', 'title', 'question_details', 'audio']);
+
+        $question = $question->update($onlyGo);
+
+        if ($question) {
+            Toastr::success('Question update successfully', 'Success');
+            return redirect()->route('questions.index');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Question $question)
     {
-        //
+        if (file_exists('backend/uploads/files/'.$question->audio)){
+            unlink('backend/uploads/files/'.$question->audio);
+        }
+        $question->delete();
+
+        Toastr::success('Question delete successfully', 'Success');
+        return redirect()->back();
     }
+
+
+    public function statusChange(Question $question)
+    {
+        if ($question) {
+
+            $question->status = !$question->status;
+            $question->save();
+
+            Toastr::success('Status change successfully', 'Success');
+            return redirect()->back();
+        } else {
+            Toastr::warning('The Identifier is wrong.. please try again', 'Warning');
+            return redirect()->back();
+        }
+    }
+
 }

@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('questions', 'QuestionController');
+Route::get('question/status/change/{question}', 'QuestionController@statusChange')->name('questions.status.change');
+
