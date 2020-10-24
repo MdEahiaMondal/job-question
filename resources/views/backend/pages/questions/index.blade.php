@@ -48,11 +48,16 @@
                                     <td>
                                         <a href="{{ route('questions.edit', $question->slug) }}"
                                            class="btn-sm btn-info">
-                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-pencil-square-o"></i> Edit
+                                        </a>
+
+                                        <a href="{{ route('questions.options.index', $question->slug) }}"
+                                           class="btn-sm btn-primary">
+                                            <i class="fa fa-plus"></i> Options
                                         </a>
 
                                         <button type="button" onclick="deleteItem('{{ $question->slug }}')"
-                                                class="btn-sm btn-danger"><i class="fa fa-trash-o"></i>
+                                                class="btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete
                                         </button>
 
                                         <form id="delete-form-{{ $question->slug }}" style="display:none"

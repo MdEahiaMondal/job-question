@@ -13,6 +13,12 @@ use Illuminate\Support\Carbon;
 class QuestionController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $questions = Question::with('createdUser', 'updatedUser')->paginate(10);
@@ -77,8 +83,8 @@ class QuestionController extends Controller
 
             $request['audio'] = $name;
 
-            if (file_exists('backend/uploads/files/'.$question->audio)){
-                unlink('backend/uploads/files/'.$question->audio);
+            if (file_exists('backend/uploads/files/'.$question->audio) && $question->audio != null){
+                unlink('public/backend/uploads/files/'.$question->audio);
             }
         }else{
             $request['audio'] = $question->audio;
@@ -123,5 +129,4 @@ class QuestionController extends Controller
             return redirect()->back();
         }
     }
-
 }

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
+    <link href="{{ asset('backend/css/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/simple-sidebar.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -62,6 +63,30 @@
 
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 {!! Toastr::message() !!}
+
+
+<script src="{{ asset('backend/js/sweetalert.js') }}"></script>
+<script type="text/javascript">
+    function deleteItem(slug){
+        swal({
+            title: "Are you sure delete this item?",
+            text: "You will not be able to recover this item file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#e0b73c',
+            cancelButtonColor: '#d22424',
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }, function () {
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            event.preventDefault();
+            document.getElementById('delete-form-'+slug).submit();
+        })
+    }
+</script>
+
+@stack('script')
+
 
 </body>
 

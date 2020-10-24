@@ -24,3 +24,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('questions', 'QuestionController');
 Route::get('question/status/change/{question}', 'QuestionController@statusChange')->name('questions.status.change');
 
+
+Route::resource('questions.options', 'OptionController');
+
+
+Route::get('lessons', 'LessonController@index')->name('all.lesson');
+Route::get('lessons/questions/{id}', 'LessonController@allQuestion')->name('all.lesson.question');
+
+
+
+
+
