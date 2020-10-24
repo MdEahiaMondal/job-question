@@ -43,4 +43,9 @@ class Option extends Model
         return $this->belongsTo(User::class, 'updated_by');
     }
 
+    public function answer()
+    {
+        return $this->hasOne(Answer::class, 'option_id');
+    }
+
 }

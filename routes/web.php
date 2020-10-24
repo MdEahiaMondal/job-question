@@ -31,6 +31,10 @@ Route::resource('questions.options', 'OptionController');
 Route::get('lessons', 'LessonController@index')->name('all.lesson');
 Route::get('lessons/questions/{id}', 'LessonController@allQuestion')->name('all.lesson.question');
 
+// question answer route
+Route::resource('answers', 'AnswerController');
+
+
 
 
 

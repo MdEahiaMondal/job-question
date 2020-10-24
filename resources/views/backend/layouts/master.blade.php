@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Job test Questions</title>
 
@@ -67,6 +68,13 @@
 
 <script src="{{ asset('backend/js/sweetalert.js') }}"></script>
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
     function deleteItem(slug){
         swal({
             title: "Are you sure delete this item?",

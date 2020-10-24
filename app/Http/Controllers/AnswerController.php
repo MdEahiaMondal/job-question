@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Option;
+use App\Question;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -27,15 +29,62 @@ class AnswerController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $lesson_id = $request->lesson_id;
+        $question_id = $request->question_id;
+        $option_id = $request->option_id;
+
+        //you can check validity
+        $question = Question::find($question_id);
+        $option = Option::where(['question_id' => $question_id, 'id' => $option_id])->first();
+
+        if ($question && $option){
+
+            // check answer already exist or not
+            $check_ans = Answer::where([
+                'user_id' => Auth()->id(),
+                'lesson_id' => $lesson_id,
+                'question_id' => $question_id,
+            ])->first();
+
+            if ($check_ans){
+                return response()->json([
+                    'success' => false,
+                    'type' => 'warning',
+                    'title' => 'Submitted',
+                    'message' => 'Hey!. You already submitted your answer'
+                ]);
+            }
+
+            $answer = Answer::create([
+                'user_id' => Auth()->id(),
+                'lesson_id' => $lesson_id,
+                'question_id' => $question_id,
+                'option_id' => $option_id,
+                'is_true' => $option->is_answer ?? false,
+            ]);
+
+            if ($answer){
+                $meesage = $option->is_answer == true ? 'Your answer is absolutely right' : 'Oops! Your answer is wrong!';
+                return response()->json([
+                    'success' => true,
+                    'type' => 'success',
+                    'title' => 'Answered',
+                    'answer' => $option->is_answer ?? false,
+                    'message' => $meesage
+                ]);
+            }
+        }else{
+            return response()->json([
+                'success' => false,
+                'type' => 'success',
+                'title' => 'Wrong',
+                'message' => 'Something is wrong! Please try again later'
+            ]);
+        }
+
     }
 
     /**

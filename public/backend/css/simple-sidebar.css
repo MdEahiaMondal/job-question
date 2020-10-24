@@ -47,4 +47,9 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+
+  .border-3{
+      border-width:3px !important;
+  }
+
 }

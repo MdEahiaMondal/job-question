@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('backend_content')
     <div class="justify-content-center">
-        <h3 class="text-center">Learning lesson wise</h3>
+        <h3 class="text-center p-3">Learning lesson wise</h3>
 
         <div class="card">
             <div class="card-body">
@@ -19,7 +19,7 @@
                                                     <i class="fa fa-tv"></i>  Computer
                                                 </span>
                                             </div>
-                                            <p>Quiz:<span class="text-dark"> Mastered</span>
+                                            <p>Questions : <span class="text-dark">{{ \Illuminate\Support\Facades\DB::table('questions')->where('lesson_id', $le['id'])->get()->count() }}</span>
                                                 <span class="items-link float-right border border-dark p-1 bg-dark text-warning">
                                                     <i class="fa fa-signal"></i>  Online
                                                 </span>
