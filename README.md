@@ -2,7 +2,7 @@
 At first setup environment for laravel setup...  (https://www.techomoro.com/install-and-setup-laravel-on-windows-using-xampp/)
 afetr complete you environment setup... go to htdocs and open this folder and open cmd then type bellow command..
 
-git clone https://github.com/MdEahiaMondal/job-question
+copy => git clone https://github.com/MdEahiaMondal/job-question
 
 ##  Install Composer Dependencies
  update composer bellow this command 
