@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af443fc0-484e-476b-b0ec-ddfeffe7d98f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Answer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/AnswerFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_24_014310_create_answers_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backend/uploads/files/20201023_5f92ad73406a0.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/pages/questions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/pages/questions/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/partials/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/pages/lessons/questions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/pages/lessons/questions.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -140,7 +137,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1jGWtXCPOxHXflHLOdrfYtYgvCf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -148,22 +147,24 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/javascript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/backend/uploads" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\xamp-7.3.10\htdocs\job_test\question\resources\views\backend\pages\questions\options" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\xamp-7.3.10\htdocs\job_test\question\public\backend\uploads" />
       <recent name="F:\xamp-7.3.10\htdocs\job_test\question\resources\views\backend\pages\lessons" />
       <recent name="F:\xamp-7.3.10\htdocs\job_test\question\resources\views\backend\pages\questions\options" />
       <recent name="F:\xamp-7.3.10\htdocs\job_test\question\resources\views\backend\pages\questions" />
       <recent name="F:\xamp-7.3.10\htdocs\job_test\question\public\backend" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\xamp-7.3.10\htdocs\job_test\question\resources\views\backend\pages\questions\options" />
     </key>
   </component>
   <component name="RunManager">
@@ -182,11 +183,15 @@
       <updated>1603431124164</updated>
       <workItem from="1603431125309" duration="28772000" />
       <workItem from="1603496702768" duration="15000" />
+      <workItem from="1603503148702" duration="774000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="242" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603465082222">

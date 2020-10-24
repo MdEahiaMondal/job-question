@@ -19,7 +19,7 @@
                         @foreach($questions as $question)
                             <div class="mb-30 border border-dark p-3">
                                 <h4  class="pb-lg-3 text-dark">
-                                    <i class="fa fa-volume-up" onclick="togglePlay({{ $question->id }})"></i>
+                                    <i class="fa fa-volume-up" onclick="togglePlay(this, '{{ $question->id }}')"></i>
                                     <audio class="audio_{{ $question->id }}">
                                         <source src="{{ asset('backend/uploads/files/'.$question->audio) ?? '' }}" type="audio/mpeg">
                                     </audio>
@@ -58,10 +58,12 @@
 
 
         var isPlaying = false;
-        function togglePlay(id) {
+        function togglePlay(element,id) {
+
           var myAudio =  $(".audio_"+id+"")[0]
 
             myAudio.onplaying = function() {
+                $(element).addClass('text-success')
                 isPlaying = true;
             };
 
@@ -72,6 +74,7 @@
             }
 
             myAudio.onpause = function() {
+                $(element).removeClass('text-success')
                 isPlaying = false;
             };
 
